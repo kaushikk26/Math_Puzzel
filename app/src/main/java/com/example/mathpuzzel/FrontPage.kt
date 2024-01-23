@@ -40,11 +40,13 @@ class FrontPage : AppCompatActivity() {
 
             var intent = Intent(this@FrontPage, PuzzelePage::class.java).putExtra("level22",level2)
             startActivity(intent)
+
         }
 
         puzzeles.setOnClickListener {
             var puzzeles1 = Intent(this@FrontPage, Puzzeles::class.java)
             startActivity(puzzeles1)
+
         }
     }
 }

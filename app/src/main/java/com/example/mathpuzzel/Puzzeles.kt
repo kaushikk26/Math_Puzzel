@@ -31,6 +31,7 @@ class Puzzeles : AppCompatActivity() {
             if (!FrontPage.sp.getString("mylevel$positionn", "an").equals(FrontPage.lock)) {
                 val statpuzzle = Intent(this@Puzzeles, PuzzelePage::class.java).putExtra("level22", positionn)
                 startActivity(statpuzzle)
+                finish()
             }
 
 

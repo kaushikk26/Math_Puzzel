@@ -102,6 +102,7 @@ class PuzzelePage : AppCompatActivity() {
 
                     var intent = Intent(this@PuzzelePage, Levelcomplitedpage::class.java)
                     startActivity(intent.putExtra("level2", check))
+                    finish()
 
                 }
                 else if(FrontPage.sp.getString("mylevel${level2+1}","ab").equals(FrontPage.complete))
@@ -109,6 +110,7 @@ class PuzzelePage : AppCompatActivity() {
                     check++
                     var intent = Intent(this@PuzzelePage, Levelcomplitedpage::class.java)
                     startActivity(intent.putExtra("level2", check))
+                    finish()
 
                 }
                 else if(FrontPage.sp.getString("mylevel${level2+1}","ab").equals(FrontPage.lock))
@@ -130,13 +132,32 @@ class PuzzelePage : AppCompatActivity() {
         }
         skip=findViewById(R.id.skip)
         skip.setOnClickListener {
-            level2++
-            FrontPage.edit.putString("mylevel$level2",FrontPage.skip)
-            FrontPage.edit.apply()
-            FrontPage.edit.putInt("mylevel",level2)
-            FrontPage.edit.apply()
-            var intent=Intent(this@PuzzelePage,PuzzelePage::class.java)
-            startActivity(intent.putExtra("level22",level2))
+            if(FrontPage.sp.getString("mylevel${level2+1}","ab").equals(FrontPage.lock)) {
+                level2++
+                FrontPage.edit.putString("mylevel$level2", FrontPage.skip)
+                FrontPage.edit.apply()
+                FrontPage.edit.putInt("mylevel", level2)
+                FrontPage.edit.apply()
+                var intent = Intent(this@PuzzelePage, PuzzelePage::class.java)
+                startActivity(intent.putExtra("level22", level2))
+            }else if (FrontPage.sp.getString("mylevel${level2+1}","ab").equals(FrontPage.complete)){
+                level2++
+                FrontPage.edit.putString("mylevel$level2", FrontPage.complete)
+                FrontPage.edit.apply()
+                FrontPage.edit.putInt("mylevel", level2)
+                FrontPage.edit.apply()
+                var intent = Intent(this@PuzzelePage, PuzzelePage::class.java)
+                startActivity(intent.putExtra("level22", level2))
+            }
+//            else{
+//                level2++
+//                FrontPage.edit.putString("mylevel$level2", FrontPage.complete)
+//                FrontPage.edit.apply()
+//                FrontPage.edit.putInt("mylevel", level2)
+//                FrontPage.edit.apply()
+//                var intent = Intent(this@PuzzelePage, PuzzelePage::class.java)
+//                startActivity(intent.putExtra("level22", level2))
+//            }
 
             finish()
         }
